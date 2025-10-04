@@ -13,7 +13,7 @@ const app = express();
 // Allow frontend origin to access backend API
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://forever-ecommerce-website-theta.vercel.app"
+  "https://forever-ecommerce-website-ciaezaqyy.vercel.app"
 ];
 
 
