@@ -12,7 +12,9 @@ const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 // Allow frontend origin to access backend API
 app.use(cors({
-  origin: "http://localhost:5173", // your frontend URL
+  origin:[ "http://localhost:5173", // your frontend URL// for local dev
+    "https://forever-ecommerce-website-theta.vercel.app", // for deployed frontend
+  ],
   credentials: true, // if you use cookies/auth
 }));
 // Connect to MongoDB
