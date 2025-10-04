@@ -11,12 +11,22 @@ const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 // Allow frontend origin to access backend API
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://forever-ecommerce-website-theta.vercel.app"
+];
+
+const cors = require('cors');
 app.use(cors({
-  origin:[ "http://localhost:5173", // your frontend URL// for local dev
-    "https://forever-ecommerce-website-theta.vercel.app", // for deployed frontend
-  ],
-  credentials: true, // if you use cookies/auth
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
 }));
+
 // Connect to MongoDB
 connectDB();
 
