@@ -13,19 +13,25 @@ const app = express();
 // Allow frontend origin to access backend API
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://forever-ecommerce-website-ciaezaqyy.vercel.app"
+  "https://forever-ecommerce-website-theta.vercel.app/"
 ];
 
 
+// Remove allowedOrigins (not needed if using wildcard)
 app.use(cors({
   origin: function(origin, callback) {
-    // allow requests with no origin (like mobile apps or curl)
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.includes(origin)) return callback(null, true);
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    // Allow ALL localhost, ALL vercel.app domains
+    if (origin.includes("localhost") || origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+    // Block other origins
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true
 }));
+
 
 // Connect to MongoDB
 connectDB();
