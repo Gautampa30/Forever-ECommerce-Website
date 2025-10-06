@@ -1,12 +1,11 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,       // e.g., smtp.gmail.com
-  port: process.env.SMTP_PORT,       // e.g., 587
-  secure: false,                     // true for port 465, false for 587
+  host: "smtp.sendgrid.net",
+  port: 587,
   auth: {
-    user: process.env.SMTP_USER,     // your email address
-    pass: process.env.SMTP_PASSWORD, // your email password or app password
+    user: "apikey", // This is literally the string "apikey"
+    pass: process.env.SENDGRID_API_KEY, // Use your API key as password
   },
 });
 
