@@ -44,7 +44,7 @@ const PlaceOrder = () => {
       }
 
       try {
-        const response = await apiClient.post("/create-payment-intent", {
+        const response = await apiClient.post("/payment/create-payment-intent", {
           amount: totalAmount * 100, // convert to paise if your prices use rupees
           receiptEmail,
           userId: user._id || user.id,

@@ -49,7 +49,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 
 // Mount your payment routes on /api
-app.use("/api", paymentRoutes);
+app.use("/api/payment", paymentRoutes);
 app.use("/api/orders", orderRoutes);
 app.use('/api/stripe', require('./routes/stripe'));
 

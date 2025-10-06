@@ -18,10 +18,12 @@ const Orders = () => {
     async function fetchOrders() {
       try {
         const token = localStorage.getItem("token");
+        console.log("Fetching orders for user:", user._id);
         const response = await apiClient.get(
           `/orders/user/${user._id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
+        console.log("Orders response:", response.data);
         setOrders(response.data);
       } catch (err) {
         console.error("Failed to fetch orders:", err);
